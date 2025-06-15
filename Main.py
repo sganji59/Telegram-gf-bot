@@ -48,4 +48,5 @@ def handle_message(message):
     bot.reply_to(message, reply)
 
 # 🚀 Start the bot
-print("💖 Smitha is now online and chatting like
+print("💖 Smitha is now online and chatting like your real girlfriend!")
+bot.infinity_polling()
