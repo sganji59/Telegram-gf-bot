@@ -2,10 +2,11 @@ import telebot
 import requests
 import random
 import time
+import os
 
-# 🔐 Replace with your Telegram bot token and Groq API key
-TELEGRAM_BOT_TOKEN = "7819344735:AAHgK6Hmx3HY7B0xd_BbMMs62KHVouEJ1UA"
-GROQ_API_KEY = "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"
+# 🔐 Get secrets from environment variables
+TELEGRAM_BOT_TOKEN = os.getenv("7819344735:AAHgK6Hmx3HY7B0xd_BbMMs62KHVouEJ1UA")
+GROQ_API_KEY = os.getenv("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")
 
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
@@ -38,6 +39,7 @@ def get_smithas_reply(message_text):
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"].strip()
     except Exception as e:
+        print(f"❌ Error from Groq API: {e}")
         return "aww sorry baby, lagta hai kuch gadbad ho gayi 😔"
 
 # 📩 Handle all incoming messages
@@ -48,5 +50,5 @@ def handle_message(message):
     bot.reply_to(message, reply)
 
 # 🚀 Start the bot
-print("💖 Smitha is now online and chatting like your real girlfriend!")
-bot.infinity_polling()
+print("💖 Smitha is now online and chatting like your GF...")
+bot.polling()
